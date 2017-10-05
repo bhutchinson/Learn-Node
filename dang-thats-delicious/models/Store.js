@@ -31,7 +31,8 @@ const storeSchema = new mongoose.Schema({
             type: String,
             required: 'You must supply an address!'
         }
-    }
+    },
+    photo: String
 });
 
 // needs to be a proper function because we need to reference 'this'
