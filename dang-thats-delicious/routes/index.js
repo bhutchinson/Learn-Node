@@ -54,4 +54,11 @@ router.post(
   authController.confirmedPasswords,
   catchErrors(authController.updatePassword)
 )
+
+/*
+  API
+*/
+
+router.get('/api/v1/search', catchErrors(storeController.searchStores))
+
 module.exports = router
