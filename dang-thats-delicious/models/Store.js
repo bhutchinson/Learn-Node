@@ -48,6 +48,10 @@ storeSchema.index({
   description: 'text'
 })
 
+storeSchema.index({
+  location: '2dsphere'
+})
+
 // needs to be a proper function because we need to reference 'this'
 storeSchema.pre('save', async function(next) {
   if (!this.isModified('name')) {
