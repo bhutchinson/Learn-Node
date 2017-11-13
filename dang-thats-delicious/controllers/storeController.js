@@ -77,7 +77,7 @@ exports.editStore = async (req, res) => {
 exports.getStoreBySlug = async (req, res, next) => {
   // 1. Find the store given the ID
   const store = await Store.findOne({ slug: req.params.slug }).populate(
-    'author'
+    'author reviews'
   )
   // 2. render 404 if the store wasn't found
   if (!store) return next()
@@ -168,4 +168,9 @@ exports.heartStore = async (req, res) => {
 exports.getHearts = async (req, res) => {
   const stores = await Store.find({ _id: { $in: req.user.hearts } })
   res.render('stores', { title: 'Hearted Stores', stores })
+}
+
+exports.getTopStores = async (req, res) => {
+  const stores = await Store.getTopStores()
+  res.render('topStores', { stores, title: '★ Top Stores!' })
 }

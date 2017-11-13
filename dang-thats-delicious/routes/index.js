@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const authController = require('../controllers/authController')
+const reviewController = require('../controllers/reviewController')
 const storeController = require('../controllers/storeController')
 const userController = require('../controllers/userController')
 const { catchErrors } = require('../handlers/errorHandlers')
@@ -61,6 +62,14 @@ router.get(
   authController.isLoggedIn,
   catchErrors(storeController.getHearts)
 )
+
+router.post(
+  '/reviews/:id',
+  authController.isLoggedIn,
+  catchErrors(reviewController.addReview)
+)
+
+router.get('/top', catchErrors(storeController.getTopStores))
 
 /*
   API
